@@ -1,1 +1,7 @@
-bhjbfjdfhdfhhfvdhvbfdhfbhcbshdfsdfghe
+
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: ping all nodes
+    ping:
