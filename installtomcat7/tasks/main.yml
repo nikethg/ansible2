@@ -1,2 +1,26 @@
 ---
 # tasks file for installtomcat7
+ - name: install tomcat
+   yum:
+    name: tomcat
+    state: present
+   notify: servicestart
+
+ - name: copy congif file
+   template:
+     src: /templates/config.j2
+     dest: /usr/share/tomcat/conf/tomcat.conf
+
+ - name: copy xmlcongif file
+   template:
+     src: /templates/tomcatuser.j2
+     dest: /usr/share/tomcat/conf/tomcat-users.xml
+
+ - name: install webapps
+   yum:
+    name: "{{ item }}"
+    state: present
+   with_items:
+     - tomcat-webapps
+     - tomcat-admin-webapps
+   notify: servicerestarted        
