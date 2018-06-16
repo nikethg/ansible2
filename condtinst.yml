@@ -1,0 +1,23 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: installing git wget tree red hat hosts
+    yum:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - git
+      - wget
+      - tree
+    when: ansible_os_family =="RedHat"
+
+  - name: installing git wget tree ubuntu hosts 
+    apt: 
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - git
+      - wget
+      - tree
+    when: ansible_os_family =="Debian"  
