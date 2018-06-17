@@ -1,6 +1,6 @@
 ---
-# handlers file for mytom7deploy
- - name: restarttom7
-   service:
+# handlers file for mytom7DeployOnRedHat
+- name: restarttom7
+  service:
     name: tomcat
 state: restarted
