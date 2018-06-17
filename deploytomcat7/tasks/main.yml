@@ -14,4 +14,4 @@
     dest: /usr/share/tomcat/webapps/
     force_basic_auth: yes
    notify: restarttom7
-when: ansible_os_family =="RedHat"
+   when: ansible_os_family =="RedHat"
