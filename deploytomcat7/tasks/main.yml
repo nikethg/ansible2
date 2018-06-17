@@ -1,2 +1,17 @@
 ---
-# tasks file for deploytomcat7
+ - name: my war file deletion
+   file:
+    path: /usr/share/tomcat/webapps/{{ item }}
+    state: absent
+   with_items:
+     -SKRlogin
+     -SKRlogin.war
+   when: ansible_os_family =="RedHat"
+ 
+ - name: download war files and place in webapps folder
+   get_url: 
+    url: https://s3-ap-southeast-1.amazonaws.com/maha4iac/SKRlogin.war
+    dest: /usr/share/tomcat/webapps/
+    force_basic_auth: yes
+   notify: restarttom7
+when: ansible_os_family =="RedHat"
